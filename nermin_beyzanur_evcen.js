@@ -9,7 +9,7 @@
   let favorites = [];
   let products = [];
   let currentPosition = 0;
-  let itemsPerView = 4;
+  let itemsPerView;
   let carouselContent;
   let prevButton;
   let nextButton;
@@ -39,6 +39,9 @@
       self.loadFavorites();
       const loadedProducts = await self.loadProducts();
       if (!loadedProducts || loadedProducts.length === 0) return;
+
+      // Initialize itemsPerView based on product count
+      itemsPerView = 1;
 
       const carouselElement = self.createCarousel();
       if (!carouselElement) return;
@@ -461,6 +464,7 @@
       (containerWidth - 80) / totalCardWidth
     );
     calculatedItemsPerView = Math.max(1, calculatedItemsPerView);
+    calculatedItemsPerView = Math.min(calculatedItemsPerView, products.length);
 
     itemsPerView = viewportWidth <= 480 ? 1 : calculatedItemsPerView;
 
