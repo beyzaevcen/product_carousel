@@ -188,12 +188,11 @@
     });
 
     card.addEventListener("click", () => {
-      // Ürünün url özelliğine yönlendir
       if (product.url) {
         window.open(product.url, "_blank");
       } else {
         console.warn(
-          `Ürün için URL bulunamadı: ${product.id} - ${product.name}`
+          `Cannot find url for product: ${product.id} - ${product.name}`
         );
       }
     });
